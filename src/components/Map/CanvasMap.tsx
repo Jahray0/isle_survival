@@ -2,7 +2,7 @@ import { useRef, useEffect } from "react";
 
 function CanvasMap() {
   const canvasRef = useRef(null);
-  const tableauCarte = [
+  const cellMap = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 1, 1, 1, 1, 1, 1, 1, 0],
     [0, 1, 2, 2, 2, 2, 2, 1, 0],
@@ -17,31 +17,32 @@ function CanvasMap() {
   const dessinerCarte = () => {
     const canvas = canvasRef.current;
     console.log(
-      "-----------------------------------------🚀 ~ file: CanvasMap.tsx:19 ~ dessinerCarte ~ canvasRef:",
-      canvasRef
-    );
-    //@ts-ignore
-    const context = canvas.getContext("2d");
-    console.log(
-      "🚀 ~ file: CanvasMap.tsx:21 ~ dessinerCarte ~ canvas:",
-      canvas
-    );
-    //@ts-ignore
-    const largeurCase = canvas.width / tableauCarte[0].length;
-    console.log(
-      "🚀 ~ file: CanvasMap.tsx:23 ~ dessinerCarte ~ canvas:",
-      canvas
-    );
-    //@ts-ignore
-    const hauteurCase = canvas.height / tableauCarte.length;
-    console.log(
-      "🚀 ~ file: CanvasMap.tsx:25 ~ dessinerCarte ~ canvas:",
+      "🚀 ~ file: CanvasMap.tsx:19 ~ dessinerCarte ~ canvas:",
       canvas
     );
 
-    for (let y = 0; y < tableauCarte.length; y++) {
-      for (let x = 0; x < tableauCarte[y].length; x++) {
-        const terrain = tableauCarte[y][x];
+    //@ts-ignore
+    const context = canvas.getContext("2d");
+    console.log(
+      "🚀 ~ file: CanvasMap.tsx:23 ~ dessinerCarte ~ context:",
+      context
+    );
+
+    const widthTile = canvas.width / cellMap[0].length;
+    console.log(
+      "🚀 ~ file: CanvasMap.tsx:27 ~ dessinerCarte ~ widthTile:",
+      widthTile
+    );
+
+    const heightTile = canvas.height / cellMap.length;
+    console.log(
+      "🚀 ~ file: CanvasMap.tsx:31 ~ dessinerCarte ~ heightTile:",
+      heightTile
+    );
+
+    for (let y = 0; y < cellMap.length; y++) {
+      for (let x = 0; x < cellMap[y].length; x++) {
+        const terrain = cellMap[y][x];
         let couleur = "rgb(21,108,153)"; // Eau
 
         if (terrain === 1) couleur = "rgb(251,225,175)"; // Plage
@@ -50,17 +51,12 @@ function CanvasMap() {
         else if (terrain === 4) couleur = "rgb(126,112,104)"; // Montagne
 
         context.fillStyle = couleur;
-        context.fillRect(
-          x * largeurCase,
-          y * hauteurCase,
-          largeurCase,
-          hauteurCase
-        );
+        context.fillRect(x * widthTile, y * heightTile, widthTile, heightTile);
       }
     }
     console.log(
       "--------------------------------------------------",
-      tableauCarte[0][0]
+      cellMap[0][0]
     );
   };
 
