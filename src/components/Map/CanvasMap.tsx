@@ -29,12 +29,14 @@ function CanvasMap() {
         context
       );
 
+      //@ts-ignore
       const widthTile = canvas.width / cellMap[0].length;
       console.log(
         "🚀 ~ file: CanvasMap.tsx:27 ~ dessinerCarte ~ widthTile:",
         widthTile
       );
 
+      //@ts-ignore
       const heightTile = canvas.height / cellMap.length;
       console.log(
         "🚀 ~ file: CanvasMap.tsx:31 ~ dessinerCarte ~ heightTile:",
